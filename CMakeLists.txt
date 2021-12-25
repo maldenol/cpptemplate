@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.21.0)
+
+PROJECT(cpptemplate VERSION 1.0.0 LANGUAGES CXX)
+
+SET(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+SET(HDR_DIR ${CMAKE_SOURCE_DIR}/include)
+SET(BIN_DIR ${CMAKE_BINARY_DIR}/build)
+SET(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
+
+FILE(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp")
+ADD_CUSTOM_TARGET(prechecks
+	COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_FILES}
+	COMMAND clang-tidy -p ${BIN_DIR} ${SRC_FILES}
+)
+
+ADD_CUSTOM_TARGET(dev)
+ADD_DEPENDENCIES(dev prechecks)
+
+ADD_SUBDIRECTORY(${SRC_DIR})

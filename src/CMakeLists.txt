@@ -1,0 +1,1 @@
+ADD_SUBDIRECTORY(${SRC_DIR}/target1)
