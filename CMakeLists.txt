@@ -9,8 +9,9 @@ SET(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 
 FILE(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp")
 ADD_CUSTOM_TARGET(prechecks
-	COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_FILES}
-	COMMAND clang-tidy -p ${BIN_DIR} ${SRC_FILES}
+  COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_FILES}
+  COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_FILES}
+  COMMAND clang-format -i ${SRC_FILES}
 )
 
 ADD_CUSTOM_TARGET(dev)
