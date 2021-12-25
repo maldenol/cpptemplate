@@ -1,5 +1,8 @@
 SET(TARGET target1)
 
+SET(COMPILER_OPTIONS -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined#[[,thread]])
+SET(LINKER_OPTIONS -pthread -lasan -lubsan #[[-ltsan]])
+
 FILE(GLOB_RECURSE SRC_FILES "${SRC_DIR}/${TARGET}/*.cpp")
 FILE(GLOB_RECURSE LIB_FILES "${LIB_DIR}/*")
 

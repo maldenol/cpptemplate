@@ -1,11 +1,11 @@
 # **cpptemplate**
 
-cpptemplate is basic repository template for every C++ project.
+cpptemplate is basic repository template for every C++ project.  
 It contains many overlapping technologies that allows you to remove what you don't need
 instead of editing.
 
 You should run "cmake .. && cmake --build ." (or "cmake .. && cmake --build . --target dev")
-within build/ directory to build.
+within build/ directory to build.  
 Sources are stored in src/ where each target is in appropriate folder, headers in include/,
 libraries in libs/, tests in test/ and documentation in docs/.
 
@@ -14,7 +14,7 @@ libraries in libs/, tests in test/ and documentation in docs/.
 - g++ and clang compiler flags
   - C++17 standard
   - extended warnings, warnings are errors
-  - adress, leak, thread, memory and undefined behavior sanitizers
+  - adress, undefined behavior and thread (cannot be used with address) sanitizers
 - libraries templates
   - Qt5 and Boost
   - Vulkan and OpenGL
