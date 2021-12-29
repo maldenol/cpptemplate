@@ -34,10 +34,14 @@
 # Build
 CMakeCache.txt
 CMakeFiles/
-Makefile
 cmake_install.cmake
 compile_commands.json
+Makefile
+build.ninja
 build/
 
 # Documentation
 docs/
+
+# External libs
+lib/
