@@ -38,6 +38,7 @@ cmake_install.cmake
 compile_commands.json
 Makefile
 build.ninja
+.ninja_log
 build/src/
 
 # Documentation

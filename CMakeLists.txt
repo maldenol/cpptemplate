@@ -7,7 +7,7 @@ SET(HDR_DIR ${CMAKE_SOURCE_DIR}/include)
 SET(BIN_DIR ${CMAKE_BINARY_DIR}/build)
 SET(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 
-FILE(GLOB SRC_FILES "${SRC_DIR}/*.cpp")
+FILE(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp" "${HDR_DIR}/*.hpp")
 ADD_CUSTOM_TARGET(prechecks
   COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_FILES}
   COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_FILES}
