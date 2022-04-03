@@ -23,7 +23,6 @@
   @param[in] argv Pointer to array of command line options
   @return 0 on success
 */
-int main(int argc, char *argv[])
-{
-    return 0;
+int main(int argc, char *argv[]) {
+  return 0;
 }

@@ -31,7 +31,10 @@
 *.out
 *.app
 
-# Build
+# Static and shared libraries
+lib/
+
+# Build files
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
@@ -39,10 +42,9 @@ compile_commands.json
 Makefile
 build.ninja
 .ninja_log
-build/src/
+
+# Compilation output
+bin/
 
 # Documentation
 docs/
-
-# External libs
-lib/
