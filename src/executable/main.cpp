@@ -5,6 +5,7 @@
   You can remove what you don't need.
 */
 #include <QtGlobal>
+#include <QGuiApplication>
 #include <boost/asio.hpp>
 
 #include <vulkan/vulkan.hpp>

@@ -15,15 +15,18 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR})
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR})
 
-FILE(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp" "${HDR_DIR}/*.hpp")
-ADD_CUSTOM_TARGET(prechecks
-  COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_FILES}
-  COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_FILES}
-  COMMAND clang-format -i ${SRC_FILES}
+FILE(GLOB_RECURSE SRC_C_FILES "${SRC_DIR}/*.c")
+FILE(GLOB_RECURSE HDR_C_FILES "${HDR_DIR}/*.h")
+FILE(GLOB_RECURSE SRC_CXX_FILES "${SRC_DIR}/*.cpp")
+FILE(GLOB_RECURSE HDR_CXX_FILES "${HDR_DIR}/*.hpp")
+ADD_CUSTOM_TARGET(checks
+  COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_C_FILES} ${HDR_C_FILES} ${SRC_CXX_FILES} ${HDR_CXX_FILES}
+  COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_CXX_FILES} ${HDR_CXX_FILES}
+  COMMAND clang-format -i ${SRC_C_FILES} ${HDR_C_FILES} ${SRC_CXX_FILES} ${HDR_CXX_FILES}
 )
 
 ADD_CUSTOM_TARGET(dev)
-ADD_DEPENDENCIES(dev prechecks)
+ADD_DEPENDENCIES(dev checks)
 
 FILE(GLOB TARGET_DIRS ${SRC_DIR}/*)
 FOREACH(TARGET_DIR ${TARGET_DIRS})
