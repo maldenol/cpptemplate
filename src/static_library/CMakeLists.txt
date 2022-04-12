@@ -13,10 +13,8 @@ SET_TARGET_PROPERTIES(${TARGET} PROPERTIES CXX_STANDARD 17)
 SET_TARGET_PROPERTIES(${TARGET} PROPERTIES CXX_STANDARD_REQUIRED ON)
 
 TARGET_COMPILE_OPTIONS(${TARGET} PUBLIC
-  $<$<COMPILE_LANG_AND_ID:C,GNU>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:C,Clang>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:CXX,Clang>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
+  $<$<COMPILE_LANG_AND_ID:C,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
+  $<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
 )
 
 TARGET_INCLUDE_DIRECTORIES(${TARGET} PRIVATE ${HDR_DIR})

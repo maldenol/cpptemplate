@@ -14,16 +14,12 @@ SET_TARGET_PROPERTIES(${TARGET} PROPERTIES CXX_STANDARD_REQUIRED ON)
 SET_TARGET_PROPERTIES(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 
 TARGET_COMPILE_OPTIONS(${TARGET} PUBLIC
-  $<$<COMPILE_LANG_AND_ID:C,GNU>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:C,Clang>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:CXX,GNU>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:CXX,Clang>:-Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined> #[[,thread]]
+  $<$<COMPILE_LANG_AND_ID:C,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
+  $<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
 )
 TARGET_LINK_OPTIONS(${TARGET} PUBLIC
-  $<$<LINK_LANG_AND_ID:C,GNU>:-pthread -lasan -lubsan -lX11> #[[-ltsan]]
-  $<$<LINK_LANG_AND_ID:C,Clang>:-pthread -lasan -lubsan -lX11> #[[-ltsan]]
-  $<$<LINK_LANG_AND_ID:CXX,GNU>:-pthread -lasan -lubsan -lX11> #[[-ltsan]]
-  $<$<LINK_LANG_AND_ID:CXX,Clang>:-pthread -lasan -lubsan -lX11> #[[-ltsan]]
+  $<$<LINK_LANG_AND_ID:C,GNU,Clang>:-pthread -lX11 -g -fsanitize=address,undefined> #[[,thread]]
+  $<$<LINK_LANG_AND_ID:CXX,GNU,Clang>:-pthread -lX11 -g -fsanitize=address,undefined> #[[,thread]]
 )
 
 TARGET_INCLUDE_DIRECTORIES(${TARGET} PRIVATE ${HDR_DIR})
