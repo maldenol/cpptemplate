@@ -7,8 +7,8 @@ instead of editing.
 You should run "cmake . && cmake --build ." (or "cmake . && cmake --build . --target dev")
 within root directory to build. All the output will be placed at bin/ directory.
 
-Sources are stored in src/ where each target is located in appropriate folder,
-headers in include/,
+Sources and headers are stored in src/ where each target is located in appropriate folder,
+includes in include/,
 libraries (static and shared) in libs/,
 tests in test/
 and documentation in docs/.
