@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# External includes
+include/
+
 # Static and shared libraries
 lib/
 
@@ -45,6 +48,20 @@ build.ninja
 
 # Compilation output
 bin/
+x86/
+x64/
+Debug/
+Release/
+
+# Visual Studio
+.vs/
+.vscode/
+
+# MSVC
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.dir/
 
 # Documentation
 docs/

@@ -14,12 +14,32 @@ SET_TARGET_PROPERTIES(${TARGET} PROPERTIES CXX_STANDARD_REQUIRED ON)
 SET_TARGET_PROPERTIES(${TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 
 TARGET_COMPILE_OPTIONS(${TARGET} PUBLIC
-  $<$<COMPILE_LANG_AND_ID:C,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
-  $<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined> #[[,thread]]
+  $<$<PLATFORM_ID:Linux>:
+    $<$<COMPILE_LANG_AND_ID:C,GNU,Clang>: -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined -O3> #[[,thread]]
+    $<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang>: -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined -O3> #[[,thread]]
+  >
+  $<$<PLATFORM_ID:Windows>:
+    $<$<COMPILE_LANG_AND_ID:C,GNU>: -Wall -Wextra -Wpedantic -Werror -g -O3>
+    $<$<COMPILE_LANG_AND_ID:C,Clang>: -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined -O3>
+    $<$<COMPILE_LANG_AND_ID:C,MSVC>: /Wall /DEBUG /fsanitize=address,undefined /O2>
+    $<$<COMPILE_LANG_AND_ID:CXX,GNU>: -Wall -Wextra -Wpedantic -Werror -g -O3>
+    $<$<COMPILE_LANG_AND_ID:CXX,Clang>: -Wall -Wextra -Wpedantic -Werror -g -fsanitize=address,undefined -O3>
+    $<$<COMPILE_LANG_AND_ID:CXX,MSVC>: /Wall /DEBUG /fsanitize=address,undefined /O2>
+  >
 )
 TARGET_LINK_OPTIONS(${TARGET} PUBLIC
-  $<$<LINK_LANG_AND_ID:C,GNU,Clang>:-pthread -lX11 -g -fsanitize=address,undefined> #[[,thread]]
-  $<$<LINK_LANG_AND_ID:CXX,GNU,Clang>:-pthread -lX11 -g -fsanitize=address,undefined> #[[,thread]]
+  $<$<PLATFORM_ID:Linux>:
+    $<$<LINK_LANG_AND_ID:C,GNU,Clang>: -pthread -lX11 -g -fsanitize=address,undefined -O3> #[[,thread]]
+    $<$<LINK_LANG_AND_ID:CXX,GNU,Clang>: -pthread -lX11 -g -fsanitize=address,undefined -O3> #[[,thread]]
+  >
+  $<$<PLATFORM_ID:Windows>:
+    $<$<LINK_LANG_AND_ID:C,GNU>: -g -O3>
+    $<$<LINK_LANG_AND_ID:C,Clang>: -g -fsanitize=address,undefined -O3>
+    $<$<LINK_LANG_AND_ID:C,MSVC>: /DEBUG /fsanitize=address,undefined /O2>
+    $<$<LINK_LANG_AND_ID:CXX,GNU>: -g -O3>
+    $<$<LINK_LANG_AND_ID:CXX,Clang>: -g -fsanitize=address,undefined -O3>
+    $<$<LINK_LANG_AND_ID:CXX,MSVC>: /DEBUG /fsanitize=address,undefined /O2>
+  >
 )
 
 TARGET_INCLUDE_DIRECTORIES(${TARGET} PRIVATE ${INC_DIR})

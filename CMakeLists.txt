@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.21.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0)
 
 PROJECT(cpptemplate VERSION 1.0.0 LANGUAGES C CXX)
 
@@ -16,13 +16,11 @@ SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIR})
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIR})
 
 FILE(GLOB_RECURSE SRC_C_FILES "${SRC_DIR}/*.c" "${SRC_DIR}/*.h")
-FILE(GLOB_RECURSE INC_C_FILES "${INC_DIR}/*.c" "${INC_DIR}/*.h")
 FILE(GLOB_RECURSE SRC_CXX_FILES "${SRC_DIR}/*.cpp" "${SRC_DIR}/*.hpp" "${SRC_DIR}/*.inl")
-FILE(GLOB_RECURSE INC_CXX_FILES  "${INC_DIR}/*.cpp" "${INC_DIR}/*.hpp" "${INC_DIR}/*.inl")
 ADD_CUSTOM_TARGET(checks
-  COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_C_FILES} ${INC_C_FILES} ${SRC_CXX_FILES} ${INC_CXX_FILES}
-  COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_CXX_FILES} ${INC_CXX_FILES}
-  COMMAND clang-format -i ${SRC_C_FILES} ${INC_C_FILES} ${SRC_CXX_FILES} ${INC_CXX_FILES}
+  COMMAND cppcheck -q --inconclusive --enable=all --suppress=missingIncludeSystem --error-exitcode=1 ${SRC_C_FILES} ${SRC_CXX_FILES}
+  COMMAND clang-tidy -fix -p ${BIN_DIR} ${SRC_CXX_FILES}
+  COMMAND clang-format -i ${SRC_C_FILES} ${SRC_CXX_FILES}
 )
 
 ADD_CUSTOM_TARGET(dev)
