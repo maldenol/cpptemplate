@@ -1,7 +1,21 @@
 # **cpptemplate**
-
 cpptemplate is a basic repository template for every C/C++ project.
 
+## Content:
+- CMake meta-build system preconfigured:
+  - Set project structure (in filesystem)
+  - Different compilation and linkage flags for different operating systems,
+    compilers and build configurations
+  - Code analysis tools' configurations: cppcheck, clang-tidy and clang-format
+  - ```dev``` target
+- Usage examples:
+  - Executable, static and shared libraires
+  - Preset compilation and linkage flags, C/C++ standards
+  - Some libraries are included
+- Configuration for Doxygen documentation generator
+- .gitignore
+
+## Building
 To build the project you should run
 ```cmake . -DCMAKE_BUILD_TYPE=<BUILD_TYPE> && cmake --build . --target <TARGET>```
 within the project's root directory,
@@ -18,16 +32,5 @@ and documentation in ```docs/``` directory.
 There are examples of an executable, a static and a shared libraries
 in ```src/``` folder.
 
-## Content:
-- CMake meta-build system preconfigured:
-  - Set project structure (in filesystem)
-  - Different compilation and linkage flags for different operating systems,
-    compilers and build configurations
-  - Code analysis tools' configurations: cppcheck, clang-tidy and clang-format
-  - ```dev``` target
-- Usage examples:
-  - Executable, static and shared libraires
-  - Preset compilation and linkage flags, C/C++ standards
-  - Some libraries are included
-- Configuration for Doxygen documentation generator
-- .gitignore
+## License
+cpptemplate is released into public domain.
