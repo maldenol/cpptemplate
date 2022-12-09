@@ -17,7 +17,7 @@ cpptemplate is a basic repository template for every C/C++ project.
 
 ## Building
 To build the project you should run
-```cmake . -DCMAKE_BUILD_TYPE=<BUILD_TYPE> && cmake --build . --target <TARGET>```
+```cmake . -DCMAKE_BUILD_TYPE=<BUILD_TYPE> && cmake --build . --target <TARGET> --config <BUILD_TYPE>```
 within the project's root directory,
 where ```<BUILD_TYPE>``` is either ```Debug``` or ```Release```
 and ```<TARGET>``` is the target you are going to build.
