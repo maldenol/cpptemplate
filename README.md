@@ -26,7 +26,7 @@ All the output will be placed to ```build/```.
 Sources and headers of each target are stored in ```src/``` directory
 in the folder with the name of the the target.
 External includes are stored in ```include/```,
-external libraries (static or shared) in ```libs/```,
+external libraries (static or shared) in ```lib/```,
 and documentation in ```docs/``` directory.
 
 There are examples of an executable, a static and a shared libraries

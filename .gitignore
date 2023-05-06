@@ -56,12 +56,23 @@ Release/
 # Visual Studio
 .vs/
 .vscode/
+*.sln
 
 # MSVC
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 *.dir/
+
+# QtCreator
+.cache/
+.cmake/
+.qtc/
+.qtc_clangd/
+CMakeCache.txt.prev
+CMakeLists.txt.user
+Testing/
+qtcsettings.cmake
 
 # Documentation
 docs/
